@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Domain Trust Console</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">EMAIL SECURITY · BETA</p>
+          <h1>Domain Trust Console</h1>
+        </div>
+        <span class="status" id="api-status"><i></i> API in verifica</span>
+      </header>
+
+      <section class="hero" aria-labelledby="lookup-title">
+        <div>
+          <h2 id="lookup-title">Valuta un dominio</h2>
+          <p>Combina segnali DNS, TLS, reputazione e anzianità del dominio in un punteggio 0–100.</p>
+        </div>
+        <form id="lookup-form" novalidate>
+          <label for="domain">Dominio o URL</label>
+          <div class="input-row">
+            <input id="domain" name="domain" type="text" inputmode="url" autocomplete="off" placeholder="es. example.com" required />
+            <button type="submit" id="submit-button">Analizza</button>
+          </div>
+          <p class="hint">Non inviare credenziali, URL completi o dati personali.</p>
+        </form>
+      </section>
+
+      <p id="form-error" class="notice error" hidden role="alert"></p>
+      <p id="loading" class="notice" hidden>Analisi in corso: raccolta dei segnali pubblici…</p>
+
+      <section id="result" class="result" hidden aria-live="polite">
+        <div class="score-card">
+          <p class="eyebrow">TRUST LEVEL</p>
+          <div class="score" id="score">—</div>
+          <strong id="verdict">In attesa</strong>
+          <p id="checked-at" class="muted"></p>
+        </div>
+        <div class="report-card">
+          <div class="report-heading">
+            <div>
+              <p class="eyebrow">REPORT</p>
+              <h2 id="result-domain">—</h2>
+            </div>
+            <span id="cache-badge" class="badge" hidden>Da cache</span>
+          </div>
+          <p id="summary" class="summary"></p>
+          <div id="signals" class="signals"></div>
+          <details id="details-wrap" hidden>
+            <summary>Dettagli tecnici</summary>
+            <pre id="details"></pre>
+          </details>
+        </div>
+      </section>
+
+      <section class="metrics" aria-labelledby="metrics-title">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">OSSERVABILITÀ</p>
+            <h2 id="metrics-title">Metriche operative</h2>
+          </div>
+          <button class="secondary" id="refresh-metrics" type="button">Aggiorna</button>
+        </div>
+        <div id="metric-cards" class="metric-grid">
+          <p class="muted">Caricamento metriche…</p>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
